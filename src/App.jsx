@@ -57,10 +57,14 @@ const App = () => {
   </button>
 </nav>
 
-  <div className=' w-full bg-green-200  flex'>
+  <div 
+  onClick={()=>setSidebarOpen(false)}
+  className=' w-full bg-green-200  flex'>
    
 
 <div
+  onClick={(e) => e.stopPropagation()}
+
   className={`
     fixed lg:static
     left-0 top-0 z-50
@@ -75,14 +79,16 @@ const App = () => {
 
 
       {/* Logo */}
-      <div className="flex h-20 items-center gap-4 px-5">
-        <div onClick={()=>setDash(false)} className="bg-yellow-300 px-2 py-2 text-xl font-black rounded-xl text-black">
+      <div
+      
+      className="flex h-20 items-center gap-4 px-5">
+        <div  className="bg-yellow-300 px-2 py-2 text-xl  font-black rounded-xl text-black">
           blinkit
         </div>
 
-        <span className="text-xl font-medium text-white">
+        {/* <span className="text-xl font-medium text-white">
           {name} 
-        </span>
+        </span> */}
       </div>
 
     
@@ -204,7 +210,9 @@ const App = () => {
 
 
            </div>
-          <div className="bg-green-200 mt-20 lg:mt-0  h-screen flex-1  min-w-0  p-8 overflow-y-auto">
+          <div
+            
+          className="bg-green-200 mt-20 lg:mt-0  h-screen flex-1  min-w-0  p-8 overflow-y-auto">
 
  {activePage === "Dashboard" && (
   <div className="min-h-screen w-full  p-6">
