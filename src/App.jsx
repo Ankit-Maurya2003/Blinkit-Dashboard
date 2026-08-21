@@ -61,156 +61,177 @@ const App = () => {
   onClick={()=>setSidebarOpen(false)}
   className=' w-full h-auto inset-0 bg-green-200  flex'>
    
-
 <div
   onClick={(e) => e.stopPropagation()}
-
   className={`
     fixed lg:static
-    
     left-0 top-0 z-50
-    h-screen w-52 shrink-0
+    h-dvh w-52 shrink-0
     bg-green-900 shadow-lg
+    flex flex-col
     transition-transform duration-300
     ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
     lg:translate-x-0
   `}
 >
-
-
-
-      {/* Logo */}
-      <div
-      
-      className="flex h-20 items-center gap-4 px-5">
-        <div  className="bg-yellow-300 px-2 py-2 text-xl  font-black rounded-xl text-black">
-          blinkit
-        </div>
-
-        {/* <span className="text-xl font-medium text-white">
-          {name} 
-        </span> */}
-      </div>
-
-    
-      <div className="px-2 pb-2 pt-1 text-md font-medium text-gray-400">
-        Pages
-      </div>
-
-    <div className='px-1'>
-       <button
-  onClick={() => {setActivePage("Dashboard"),setSidebarOpen(false)}}
-  className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-    ${activePage === "Dashboard"
-      ? "bg-white text-black"
-      : "text-white hover:text-black hover:bg-white"
-    }`}
->
-  <LayoutDashboard size={25} />
-  Dashboard
-</button>
-
-        <button
-  onClick={() => {setActivePage("Categories"),setSidebarOpen(false)}}
-  className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-    ${activePage === "Categories"
-      ? "bg-white text-black"
-      : "text-white hover:text-black hover:bg-white"
-    }`}
->
-  <Grid2X2 size={25} />
-  Categories
-</button>
-<button
-  onClick={() => {setActivePage("Add category"),setSidebarOpen(false)}}
-  className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-    ${activePage === "Add category"
-      ? "bg-white text-black"
-      : "text-white hover:text-black hover:bg-white"
-    }`}
->
-<Plus size={20} />
-  Add categories
-</button>
-
-       <button
-  onClick={() => {setActivePage("Product"),setSidebarOpen(false)}}
-  className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-    ${activePage === "Product"
-      ? "bg-white text-black"
-      : "text-white hover:text-black hover:bg-white"
-    }`}
->
-  <Package size={25} />
-  Product
-</button>
-<button
-  onClick={() => {setActivePage("Add Product"),setSidebarOpen(false)}}
-  className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-    ${activePage === "Add Product"
-      ? "bg-white text-black"
-      : "text-white hover:text-black hover:bg-white"
-    }`}
->
-  <Plus size={20} />
-  Add Product
-</button>
-
-        <button
-  onClick={() => {setActivePage("Orders"),setSidebarOpen(false)}}
-  className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-    ${activePage === "Orders"
-      ? "bg-white text-black"
-      : "text-white hover:text-black hover:bg-white"
-    }`}
->
-  <ShoppingCart size={25} />
-  Orders
-</button>
-
-        <button
-  onClick={() => {setActivePage("Users"),setSidebarOpen(false)}}
-  className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-    ${activePage === "Users"
-      ? "bg-white text-black"
-      : "text-white hover:text-black hover:bg-white"
-    }`}
->
-  <Users size={25} />
-  Users
-</button>
-<button
-  onClick={() => {setActivePage("Settings"),setSidebarOpen(false)}}
-  className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-    ${activePage === "Settings"
-      ? "bg-white text-black"
-      : "text-white hover:text-black hover:bg-white"
-    }`}
->
-  <Settings size={25} />
-  Settings
-</button>
-
-        
+  {/* Logo */}
+  <div className="flex h-20 shrink-0 items-center px-5">
+    <div className="bg-yellow-300 px-2 py-2 text-xl font-black rounded-xl text-black">
+      blinkit
     </div>
+  </div>
 
-    
-      <div className="fixed bottom-2 left-2 right-2 ">
-<button
-  onClick={() => setShowLogoutModal(true)}
-  className="flex h-10  w-full items-center gap-4 rounded-lg px-4 text-lg text-white hover:text-black hover:bg-white"
->
-  <LogOut size={25} />
-  Logout
-</button>
+  {/* Pages */}
+  <div className="shrink-0 px-2 pb-2 pt-1 text-md font-medium text-gray-400">
+    Pages
+  </div>
 
-      </div>
-    
+  {/* Menu */}
+  <div className="flex-1 overflow-y-auto px-1">
 
+    <button
+      onClick={() => {
+        setActivePage("Dashboard");
+        setSidebarOpen(false);
+      }}
+      className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
+        ${
+          activePage === "Dashboard"
+            ? "bg-white text-black"
+            : "text-white hover:bg-white hover:text-black"
+        }`}
+    >
+      <LayoutDashboard size={25} />
+      Dashboard
+    </button>
 
+    <button
+      onClick={() => {
+        setActivePage("Categories");
+        setSidebarOpen(false);
+      }}
+      className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
+        ${
+          activePage === "Categories"
+            ? "bg-white text-black"
+            : "text-white hover:bg-white hover:text-black"
+        }`}
+    >
+      <Grid2X2 size={25} />
+      Categories
+    </button>
 
+    <button
+      onClick={() => {
+        setActivePage("Add category");
+        setSidebarOpen(false);
+      }}
+      className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
+        ${
+          activePage === "Add category"
+            ? "bg-white text-black"
+            : "text-white hover:bg-white hover:text-black"
+        }`}
+    >
+      <Plus size={20} />
+      Add categories
+    </button>
 
-           </div>
+    <button
+      onClick={() => {
+        setActivePage("Product");
+        setSidebarOpen(false);
+      }}
+      className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
+        ${
+          activePage === "Product"
+            ? "bg-white text-black"
+            : "text-white hover:bg-white hover:text-black"
+        }`}
+    >
+      <Package size={25} />
+      Product
+    </button>
+
+    <button
+      onClick={() => {
+        setActivePage("Add Product");
+        setSidebarOpen(false);
+      }}
+      className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
+        ${
+          activePage === "Add Product"
+            ? "bg-white text-black"
+            : "text-white hover:bg-white hover:text-black"
+        }`}
+    >
+      <Plus size={20} />
+      Add Product
+    </button>
+
+    <button
+      onClick={() => {
+        setActivePage("Orders");
+        setSidebarOpen(false);
+      }}
+      className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
+        ${
+          activePage === "Orders"
+            ? "bg-white text-black"
+            : "text-white hover:bg-white hover:text-black"
+        }`}
+    >
+      <ShoppingCart size={25} />
+      Orders
+    </button>
+
+    <button
+      onClick={() => {
+        setActivePage("Users");
+        setSidebarOpen(false);
+      }}
+      className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
+        ${
+          activePage === "Users"
+            ? "bg-white text-black"
+            : "text-white hover:bg-white hover:text-black"
+        }`}
+    >
+      <Users size={25} />
+      Users
+    </button>
+
+    <button
+      onClick={() => {
+        setActivePage("Settings");
+        setSidebarOpen(false);
+      }}
+      className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
+        ${
+          activePage === "Settings"
+            ? "bg-white text-black"
+            : "text-white hover:bg-white hover:text-black"
+        }`}
+    >
+      <Settings size={25} />
+      Settings
+    </button>
+
+  </div>
+
+  {/* Logout - always bottom */}
+  <div className="shrink-0 p-2">
+    <button
+      onClick={() => setShowLogoutModal(true)}
+      className="flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg text-white hover:bg-white hover:text-black"
+    >
+      <LogOut size={25} />
+      Logout
+    </button>
+  </div>
+
+</div>
+
           <div
             
           className="bg-green-200 mt-20 h-screen lg:mt-0 flex-1  min-w-0  p-8 overflow-y-auto">
