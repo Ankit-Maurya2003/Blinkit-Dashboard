@@ -194,7 +194,7 @@ const App = () => {
     </div>
 
     
-      <div className="absolute bottom-2 left-2 right-2 ">
+      <div className="fixed bottom-2 left-2 right-2 ">
 <button
   onClick={() => setShowLogoutModal(true)}
   className="flex h-10  w-full items-center gap-4 rounded-lg px-4 text-lg text-white hover:text-black hover:bg-white"
