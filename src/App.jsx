@@ -59,7 +59,7 @@ const App = () => {
 
   <div 
   onClick={()=>setSidebarOpen(false)}
-  className=' w-full h-auto bg-green-200  flex'>
+  className=' w-full h-screen bg-green-200  flex'>
    
 
 <div
@@ -68,7 +68,7 @@ const App = () => {
   className={`
     fixed lg:static
     left-0 top-0 z-50
-    h-auto w-52 shrink-0
+    h-screen w-52 shrink-0
     bg-green-900 shadow-lg
     transition-transform duration-300
     ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
