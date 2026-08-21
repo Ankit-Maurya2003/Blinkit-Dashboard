@@ -59,7 +59,7 @@ const App = () => {
 
   <div 
   onClick={()=>setSidebarOpen(false)}
-  className=' w-full h-screen bg-green-200  flex'>
+  className=' w-full h-auto bg-green-200  flex'>
    
 
 <div
