@@ -68,7 +68,7 @@ const App = () => {
   className={`
     fixed lg:static
     left-0 top-0 z-50
-    h-screen w-52 shrink-0
+    h-auto w-52 shrink-0
     bg-green-900 shadow-lg
     transition-transform duration-300
     ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
@@ -212,7 +212,7 @@ const App = () => {
            </div>
           <div
             
-          className="bg-green-200 mt-20 lg:mt-0   flex-1  min-w-0  p-8 overflow-y-auto">
+          className="bg-green-200 mt-20 lg:mt-0  h-screen flex-1  min-w-0  p-8 overflow-y-auto">
 
  {activePage === "Dashboard" && (
   <div className="min-h-screen w-full  p-6">
