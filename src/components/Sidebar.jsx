@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   LayoutDashboard,
   Grid2X2,
@@ -9,184 +8,133 @@ import {
   Settings,
   LogOut,
   Plus,
+  X,
 } from "lucide-react";
 
 const Sidebar = ({
-  sidebarOpen,
-  setSidebarOpen,
   activePage,
   setActivePage,
-  setShowLogoutModal,
+  sidebarOpen,
+  setSidebarOpen,
+  onLogout,
 }) => {
+  const menu = [
+    {
+      name: "Dashboard",
+      icon: LayoutDashboard,
+    },
+    {
+      name: "Categories",
+      icon: Grid2X2,
+    },
+    {
+      name: "Add category",
+      label: "Add Category",
+      icon: Plus,
+    },
+    {
+      name: "Product",
+      icon: Package,
+    },
+    {
+      name: "Add Product",
+      icon: Plus,
+    },
+    {
+      name: "Orders",
+      icon: ShoppingCart,
+    },
+    {
+      name: "Users",
+      icon: Users,
+    },
+    {
+      name: "Settings",
+      icon: Settings,
+    },
+  ];
+
   return (
-    <div
-      onClick={(e) => e.stopPropagation()}
-      className={`
-        fixed lg:static
-        
-        left-0 top-0 z-50
-        h-dvh w-52 shrink-0
-        bg-green-900 shadow-lg
-        transition-transform duration-300
-        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
-        lg:translate-x-0
-      `}
-    >
+    <>
+      {sidebarOpen && (
+        <div
+          onClick={() => setSidebarOpen(false)}
+          className="fixed inset-0 z-40 bg-black/40 lg:hidden"
+        />
+      )}
 
-      {/* Logo */}
-      <div className="flex h-20 items-center gap-4 px-5">
-        <div className="bg-yellow-300 px-2 py-2 text-xl font-black rounded-xl text-black">
-          blinkit
+      <aside
+        className={`
+          fixed lg:sticky
+          top-0 left-0
+          z-50
+          h-screen
+          w-56
+          shrink-0
+          bg-green-900
+          shadow-xl
+          transition-transform duration-300
+          ${
+            sidebarOpen
+              ? "translate-x-0"
+              : "-translate-x-full lg:translate-x-0"
+          }
+        `}
+      >
+        <div className="flex h-20 items-center justify-between px-5">
+          <div className="rounded-xl bg-yellow-300 px-3 py-2 text-xl font-black text-black">
+            blinkit
+          </div>
+
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="text-white lg:hidden"
+          >
+            <X size={22} />
+          </button>
         </div>
-      </div>
 
-      <div className="px-2 pb-2 pt-1 text-md font-medium text-gray-400">
-        Pages
-      </div>
+        <p className="px-4 pb-3 text-sm font-medium text-gray-400">
+          Pages
+        </p>
 
-      <div className="px-1">
+        <div className="space-y-1 px-2">
+          {menu.map((item) => {
+            const Icon = item.icon;
 
-        <button
-          onClick={() => {
-            setActivePage("Dashboard");
-            setSidebarOpen(false);
-          }}
-          className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-            ${
-              activePage === "Dashboard"
-                ? "bg-white text-black"
-                : "text-white hover:text-black hover:bg-white"
-            }`}
-        >
-          <LayoutDashboard size={25} />
-          Dashboard
-        </button>
+            return (
+              <button
+                key={item.name}
+                onClick={() => setActivePage(item.name)}
+                className={`
+                  flex h-10 w-full items-center gap-3 rounded-lg px-3
+                  text-sm font-medium transition
+                  ${
+                    activePage === item.name
+                      ? "bg-white text-black"
+                      : "text-white hover:bg-white hover:text-black"
+                  }
+                `}
+              >
+                <Icon size={20} />
 
-        <button
-          onClick={() => {
-            setActivePage("Categories");
-            setSidebarOpen(false);
-          }}
-          className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-            ${
-              activePage === "Categories"
-                ? "bg-white text-black"
-                : "text-white hover:text-black hover:bg-white"
-            }`}
-        >
-          <Grid2X2 size={25} />
-          Categories
-        </button>
+                {item.label || item.name}
+              </button>
+            );
+          })}
+        </div>
 
-        <button
-          onClick={() => {
-            setActivePage("Add category");
-            setSidebarOpen(false);
-          }}
-          className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-            ${
-              activePage === "Add category"
-                ? "bg-white text-black"
-                : "text-white hover:text-black hover:bg-white"
-            }`}
-        >
-          <Plus size={20} />
-          Add categories
-        </button>
-
-        <button
-          onClick={() => {
-            setActivePage("Product");
-            setSidebarOpen(false);
-          }}
-          className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-            ${
-              activePage === "Product"
-                ? "bg-white text-black"
-                : "text-white hover:text-black hover:bg-white"
-            }`}
-        >
-          <Package size={25} />
-          Product
-        </button>
-
-        <button
-          onClick={() => {
-            setActivePage("Add Product");
-            setSidebarOpen(false);
-          }}
-          className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-            ${
-              activePage === "Add Product"
-                ? "bg-white text-black"
-                : "text-white hover:text-black hover:bg-white"
-            }`}
-        >
-          <Plus size={20} />
-          Add Product
-        </button>
-
-        <button
-          onClick={() => {
-            setActivePage("Orders");
-            setSidebarOpen(false);
-          }}
-          className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-            ${
-              activePage === "Orders"
-                ? "bg-white text-black"
-                : "text-white hover:text-black hover:bg-white"
-            }`}
-        >
-          <ShoppingCart size={25} />
-          Orders
-        </button>
-
-        <button
-          onClick={() => {
-            setActivePage("Users");
-            setSidebarOpen(false);
-          }}
-          className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-            ${
-              activePage === "Users"
-                ? "bg-white text-black"
-                : "text-white hover:text-black hover:bg-white"
-            }`}
-        >
-          <Users size={25} />
-          Users
-        </button>
-
-        <button
-          onClick={() => {
-            setActivePage("Settings");
-            setSidebarOpen(false);
-          }}
-          className={`flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg
-            ${
-              activePage === "Settings"
-                ? "bg-white text-black"
-                : "text-white hover:text-black hover:bg-white"
-            }`}
-        >
-          <Settings size={25} />
-          Settings
-        </button>
-
-      </div>
-
-      <div className="fixed bottom-2 left-2 right-2">
-        <button
-          onClick={() => setShowLogoutModal(true)}
-          className="flex h-10 w-full items-center gap-4 rounded-lg px-4 text-lg text-white hover:text-black hover:bg-white"
-        >
-          <LogOut size={25} />
-          Logout
-        </button>
-      </div>
-
-    </div>
+        <div className="absolute bottom-3 left-2 right-2">
+          <button
+            onClick={onLogout}
+            className="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-sm font-medium text-white hover:bg-white hover:text-black"
+          >
+            <LogOut size={20} />
+            Logout
+          </button>
+        </div>
+      </aside>
+    </>
   );
 };
 

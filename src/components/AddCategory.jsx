@@ -1,163 +1,201 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const AddCategory = ({ setActivePage }) => {
+const icons = [
+  "🥬",
+  "🍎",
+  "🍞",
+  "🍪",
+  "🥤",
+  "🧴",
+  "🧹",
+  "🥛",
+];
+
+const AddCategory = ({
+  initialData,
+  onSave,
+  onCancel,
+}) => {
+  const [name, setName] = useState("");
+  const [icon, setIcon] = useState("🥬");
+  const [status, setStatus] = useState("Active");
+
+  useEffect(() => {
+    if (initialData) {
+      setName(initialData.name);
+      setIcon(initialData.icon);
+      setStatus(initialData.status);
+    } else {
+      setName("");
+      setIcon("🥬");
+      setStatus("Active");
+    }
+  }, [initialData]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!name.trim()) {
+      alert("Please enter category name");
+      return;
+    }
+
+    onSave({
+      ...(initialData || {}),
+      name: name.trim(),
+      icon,
+      status,
+    });
+  };
+
   return (
-    <div className="min-h-screen p-2 md:p-6">
-
+    <div className="min-h-screen">
       {/* Back */}
-      <p
-        onClick={() => setActivePage("Categories")}
-        className="text-xs text-gray-500 mb-2"
+      <button
+        onClick={onCancel}
+        className="mb-2 text-xs text-gray-500 hover:text-green-600"
       >
         ← Back to Categories
-      </p>
+      </button>
 
       {/* Heading */}
       <div className="mb-6">
-
         <h1 className="text-2xl font-bold text-gray-800">
-          Add New Category
+          {initialData
+            ? "Edit Category"
+            : "Add New Category"}
         </h1>
 
-        <p className="text-sm text-gray-500 mt-1">
-          Add a new category to organize your products
+        <p className="mt-1 text-sm text-gray-500">
+          {initialData
+            ? "Update category details"
+            : "Add a new category to organize your products"}
         </p>
-
       </div>
 
-      {/* Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
 
-        {/* Left Form */}
-        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6">
-
-          {/* Category Name */}
+        {/* Form */}
+        <form
+          onSubmit={handleSubmit}
+          className="rounded-xl border border-gray-200 bg-white p-6 lg:col-span-2"
+        >
+          {/* Name */}
           <div className="mb-6">
-
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="mb-2 block text-sm font-medium text-gray-700">
               Category Name *
             </label>
 
             <input
-              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="Enter category name"
-              className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-green-500"
+              className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm outline-none focus:border-green-500"
             />
-
           </div>
 
           {/* Icon */}
           <div className="mb-6">
-
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="mb-1 block text-sm font-medium text-gray-700">
               Icon
             </label>
 
-            <p className="text-xs text-gray-400 mb-3">
+            <p className="mb-3 text-xs text-gray-400">
               Choose an icon
             </p>
 
-            <div className="flex gap-3 flex-wrap">
-
-              <button className="w-11 h-11 rounded-lg border-2 border-green-500 bg-green-50 text-xl">
-                🥬
-              </button>
-
-              <button className="w-11 h-11 rounded-lg border border-gray-200 bg-white text-xl">
-                🍎
-              </button>
-
-              <button className="w-11 h-11 rounded-lg border border-gray-200 bg-white text-xl">
-                🍞
-              </button>
-
-              <button className="w-11 h-11 rounded-lg border border-gray-200 bg-white text-xl">
-                🍪
-              </button>
-
-              <button className="w-11 h-11 rounded-lg border border-gray-200 bg-white text-xl">
-                🥤
-              </button>
-
-              <button className="w-11 h-11 rounded-lg border border-gray-200 bg-white text-xl">
-                🧴
-              </button>
-
-              <button className="w-11 h-11 rounded-lg border border-gray-200 bg-white text-xl">
-                🧹
-              </button>
-
-              <button className="w-11 h-11 rounded-lg border border-gray-200 bg-white text-xl text-gray-400">
-                +
-              </button>
-
+            <div className="flex flex-wrap gap-3">
+              {icons.map((item) => (
+                <button
+                  type="button"
+                  key={item}
+                  onClick={() => setIcon(item)}
+                  className={`
+                    flex h-11 w-11 items-center justify-center rounded-lg text-xl
+                    ${
+                      icon === item
+                        ? "border-2 border-green-500 bg-green-50"
+                        : "border border-gray-200 bg-white"
+                    }
+                  `}
+                >
+                  {item}
+                </button>
+              ))}
             </div>
-
           </div>
 
           {/* Status */}
           <div className="mb-8">
-
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="mb-2 block text-sm font-medium text-gray-700">
               Status
             </label>
 
-            <select className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none bg-white">
+            <select
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:border-green-500"
+            >
               <option>Active</option>
               <option>Inactive</option>
             </select>
-
           </div>
 
           {/* Buttons */}
           <div className="flex gap-3">
-
-            <button className="bg-green-600 hover:bg-green-700 text-white px-7 py-2.5 rounded-lg text-sm font-medium">
-              Save Category
+            <button
+              type="submit"
+              className="rounded-lg bg-green-600 px-7 py-2.5 text-sm font-medium text-white hover:bg-green-700"
+            >
+              {initialData
+                ? "Update Category"
+                : "Save Category"}
             </button>
 
-            <button className="border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 px-6 py-2.5 rounded-lg text-sm font-medium">
+            <button
+              type="button"
+              onClick={onCancel}
+              className="rounded-lg border border-gray-200 bg-white px-6 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
               Cancel
             </button>
-
           </div>
+        </form>
 
-        </div>
-
-        {/* Right Preview */}
-        <div className="bg-white rounded-xl border border-gray-200 p-6 h-fit">
-
-          <h2 className="text-sm font-semibold text-gray-700 mb-6">
+        {/* Preview */}
+        <div className="h-fit rounded-xl border border-gray-200 bg-white p-6">
+          <h2 className="mb-6 text-sm font-semibold text-gray-700">
             Preview
           </h2>
 
           <div className="flex flex-col items-center justify-center py-8">
-
-            {/* Icon */}
-            <div className="w-20 h-20 rounded-xl bg-green-50 border border-green-100 flex items-center justify-center text-4xl mb-4">
-              🥬
+            <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-xl border border-green-100 bg-green-50 text-4xl">
+              {icon}
             </div>
 
-            {/* Name */}
             <h3 className="text-base font-semibold text-gray-800">
-              Category Name
+              {name || "Category Name"}
             </h3>
 
-            {/* Status */}
-            <span className="mt-3 bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs font-medium">
-              Active
+            <span
+              className={`
+                mt-3 rounded-full px-3 py-1 text-xs font-medium
+                ${
+                  status === "Active"
+                    ? "bg-green-100 text-green-600"
+                    : "bg-red-100 text-red-500"
+                }
+              `}
+            >
+              {status}
             </span>
 
-            <p className="text-xs text-gray-400 text-center mt-5">
+            <p className="mt-5 text-center text-xs text-gray-400">
               This is how your category will appear
             </p>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
 };

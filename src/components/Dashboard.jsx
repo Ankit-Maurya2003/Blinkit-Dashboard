@@ -58,9 +58,10 @@ const Dashboard = ({ setActivePage }) => {
             </div>
 
             <div>
-              <p className="text-sm font-semibold">
-                {name}
-              </p>
+           <p className="text-sm font-semibold">
+  Admin
+</p>
+
 
               <p className="text-xs text-gray-400">
                 Administrator
