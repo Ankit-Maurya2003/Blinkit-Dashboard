@@ -22,7 +22,7 @@ import data from "../data/chartData";
 
 const Dashboard = ({ setActivePage }) => {
   return (
-    <div className="min-h-screen w-full p-6">
+    <div className="min-h-screen w-full ">
 
       {/* Dashboard Header */}
       <div className="sm:flex items-center justify-between mb-6">
@@ -51,13 +51,14 @@ const Dashboard = ({ setActivePage }) => {
           </div>
 
           {/* Admin */}
-          <div className="flex items-center gap-2">
+         <div className=" hidden sm:block">
+           <div className="flex items-center gap-2 ">
 
             <div className="h-9 w-9 rounded-full bg-green-700 text-white flex items-center justify-center font-bold">
               A
             </div>
 
-            <div>
+            <div >
            <p className="text-sm font-semibold">
   Admin
 </p>
@@ -71,6 +72,7 @@ const Dashboard = ({ setActivePage }) => {
             <ChevronDown size={16} />
 
           </div>
+         </div>
 
         </div>
       </div>
@@ -331,9 +333,9 @@ const Dashboard = ({ setActivePage }) => {
       </div>
 
       {/* Recent Orders */}
-      <div className="bg-white border rounded-xl mt-6 p-5">
+      <div className="bg-white border rounded-xl mt-6 p-3">
 
-        <div className="flex items-center overflow-x-auto justify-between mb-5">
+        <div className="  flex items-center overflow-x-auto justify-between mb-5">
 
           <h2 className="font-bold text-gray-800">
             Recent Orders
@@ -341,7 +343,7 @@ const Dashboard = ({ setActivePage }) => {
 
           <button
             onClick={() => setActivePage("Orders")}
-            className="text-xs border rounded-lg px-3 py-2"
+            className="text-xs  rounded-lg px-2 py-2"
           >
             View All Orders
           </button>
@@ -353,38 +355,38 @@ const Dashboard = ({ setActivePage }) => {
           <table className="w-full text-sm">
 
             <thead>
-              <tr className="border-b text-center text-gray-400">
-                <th className="py-3">Order ID</th>
-                <th>Customer</th>
-                <th>Amount</th>
-                <th>Status</th>
-                <th>Date</th>
+              <tr className="border-b text-left text-gray-400">
+                <th className="px-5 py-4">Order ID</th>
+                <th className="px-5 py-4">Customer</th>
+                <th className="px-5 py-4">Amount</th>
+                <th className="px-5 py-4">Status</th>
+                <th className="px-5 py-4">Date</th>
               </tr>
             </thead>
 
             <tbody>
 
-              <tr className="border-b">
+              <tr className="border-b ">
 
-                <td className="py-4 font-medium">
+                <td className="px-5 py-4 font-medium">
                   #ORD-1024
                 </td>
 
-                <td>
+                <td className="px-5 py-4">
                   Rahul Kumar
                 </td>
 
-                <td>
+                <td className="px-5 py-4">
                   ₹1,250
                 </td>
 
-                <td>
+                <td className="px-5 py-4">
                   <span className="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs">
                     Delivered
                   </span>
                 </td>
 
-                <td className="text-gray-500">
+                <td className="text-gray-500 px-5 py-4">
                   12 May 2026
                 </td>
 
@@ -392,25 +394,25 @@ const Dashboard = ({ setActivePage }) => {
 
               <tr className="border-b">
 
-                <td className="py-4 font-medium">
+                <td className="px-5 py-4font-medium">
                   #ORD-1023
                 </td>
 
-                <td>
+                <td  className="px-5 py-4">
                   Aman Sharma
                 </td>
 
-                <td>
+                <td  className="px-5 py-4">
                   ₹850
                 </td>
 
-                <td>
+                <td  className="px-5 py-4">
                   <span className="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-xs">
                     Pending
                   </span>
                 </td>
 
-                <td className="text-gray-500">
+                <td className="text-gray-500 px-5 py-4">
                   11 May 2026
                 </td>
 
@@ -418,25 +420,25 @@ const Dashboard = ({ setActivePage }) => {
 
               <tr>
 
-                <td className="py-4 font-medium">
+                <td className=" px-5 py-4 font-medium">
                   #ORD-1022
                 </td>
 
-                <td>
+                <td  className="px-5 py-4">
                   Priya Singh
                 </td>
 
-                <td>
+                <td  className="px-5 py-4">
                   ₹2,450
                 </td>
 
-                <td>
+                <td  className="px-5 py-4">
                   <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs">
                     Processing
                   </span>
                 </td>
 
-                <td className="text-gray-500">
+                <td className="text-gray-500 px-5 py-4">
                   10 May 2026
                 </td>
 

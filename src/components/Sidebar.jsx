@@ -63,12 +63,12 @@ const Sidebar = ({
         />
       )}
 
-      <aside
+      <div
         className={`
           fixed lg:sticky
           top-0 left-0
           z-50
-          h-screen
+          h-dvh
           w-56
           shrink-0
           bg-green-900
@@ -93,10 +93,6 @@ const Sidebar = ({
             <X size={22} />
           </button>
         </div>
-
-        <p className="px-4 pb-3 text-sm font-medium text-gray-400">
-          Pages
-        </p>
 
         <div className="space-y-1 px-2">
           {menu.map((item) => {
@@ -133,7 +129,7 @@ const Sidebar = ({
             Logout
           </button>
         </div>
-      </aside>
+      </div>
     </>
   );
 };
