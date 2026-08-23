@@ -308,7 +308,7 @@ const Orders = () => {
         {/* Table */}
         <div className="overflow-x-auto">
 
-          <table className="w-full min-w-[800px] text-sm">
+          <table className="w-full min-w-lg text-sm">
 
             <thead>
               <tr className="border-b bg-gray-50 text-left">
@@ -522,7 +522,7 @@ const Orders = () => {
       {selectedOrder && (
 
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 px-4"
+          className="fixed inset-0 z-100 flex items-center justify-center bg-black/50 px-4"
           onClick={() =>
             setSelectedOrder(null)
           }
